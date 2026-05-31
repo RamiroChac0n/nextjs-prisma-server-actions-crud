@@ -14,39 +14,44 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea"
 
 export function TaskForm() {
+
+  async function createTask(formData: FormData) {
+    'use server'
+    console.log(formData)
+  }
+
   return (
-    <Card className="w-full max-w-sm">
-      <CardHeader>
-        <CardTitle>Create Task</CardTitle>
-        <CardDescription>
-          Enter task details below
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form>
+    <form action={createTask} className="w-full max-w-sm">
+      <Card>
+        <CardHeader>
+          <CardTitle>Create Task</CardTitle>
+          <CardDescription>
+            Enter task details below
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
           <div className="flex flex-col gap-6">
             <div className="grid gap-2">
-              <Label htmlFor="email">Name</Label>
+              <Label htmlFor="name">Name</Label>
               <Input
-                id="task-name"
+                id="name"
+                name="name"
                 type="text"
                 placeholder="Name of your task"
                 required
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="task-description">Description</Label>
+              <Label htmlFor="description">Description</Label>
               <Textarea
-                id="task-description"
+                id="description"
                 name="description"
                 placeholder="Description of your task"
               />
             </div>
-            <div className="grid gap-2">
-              <div className="flex items-center">
-                <Label htmlFor="priority">Priority</Label>
-              </div>
-              <Select>
+            <div className="grid gap-2 items-center">
+              <Label htmlFor="priority">Priority</Label>
+              <Select name="priority">
                 <SelectTrigger id="priority" className="w-full">
                   <SelectValue placeholder="Select a priority" />
                 </SelectTrigger>
@@ -58,16 +63,13 @@ export function TaskForm() {
               </Select>
             </div>
           </div>
-        </form>
-      </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <Button type="submit" className="w-full">
-          Login
-        </Button>
-        <Button variant="outline" className="w-full">
-          Login with Google
-        </Button>
-      </CardFooter>
-    </Card>
+        </CardContent>
+        <CardFooter className="flex-col gap-2">
+          <Button type="submit" className="w-full">
+            Create Task
+          </Button>
+        </CardFooter>
+      </Card>
+    </form>
   )
 }
