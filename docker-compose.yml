@@ -1,0 +1,13 @@
+services:
+  db:
+    image: postgres:16.13-alpine3.23
+    container_name: nextjs-prisma-server-actions-crud
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

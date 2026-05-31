@@ -11,3 +11,12 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model Task{
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  priority    String   @default("low")
+  createdAt   DateTime @default(now())
+  updateAt    DateTime @updatedAt
+}
