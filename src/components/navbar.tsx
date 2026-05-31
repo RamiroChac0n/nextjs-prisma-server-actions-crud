@@ -5,8 +5,10 @@ import { buttonVariants } from './ui/button'
 
 function Navbar() {
   return (
-    <nav className='flex justify-between'>
-      <h1>NextActionCRUD</h1>
+    <nav className='flex justify-between py-5'>
+      <h1 className='text-3xl font-bold text-gray-800 dark:text-gray-100'>
+        NextActionCRUD
+        </h1>
       <div className='flex gap-x-2 items-start'>
         <Link href="/new" className={buttonVariants({ variant: "secondary" })}>
           Create Task
