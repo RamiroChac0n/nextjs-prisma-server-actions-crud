@@ -15,7 +15,7 @@ import { Textarea } from "@/components/ui/textarea"
 
 export function TaskForm() {
   return (
-    <Card className="w-[350px]">
+    <Card className="w-full max-w-sm">
       <CardHeader>
         <CardTitle>Create Task</CardTitle>
         <CardDescription>
