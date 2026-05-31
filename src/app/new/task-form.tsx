@@ -12,12 +12,31 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
+import prisma from "@/lib/prisma"
+import { redirect } from "next/navigation";
 
 export function TaskForm() {
 
   async function createTask(formData: FormData) {
     'use server'
+
+    const name = formData.get('name') as string
+    const description = formData.get('description') as string
+    const priority = formData.get('priority') as string
+
     console.log(formData)
+
+    if( !name || !description || !priority ) return 
+
+    const newTask = await prisma.task.create({
+      data: {
+        name: name,
+        description: description,
+        priority: priority,
+      }
+    })
+    console.log(newTask)
+    redirect('/')
   }
 
   return (
@@ -47,11 +66,12 @@ export function TaskForm() {
                 id="description"
                 name="description"
                 placeholder="Description of your task"
+                required
               />
             </div>
             <div className="grid gap-2 items-center">
               <Label htmlFor="priority">Priority</Label>
-              <Select name="priority">
+              <Select name="priority" required>
                 <SelectTrigger id="priority" className="w-full">
                   <SelectValue placeholder="Select a priority" />
                 </SelectTrigger>
