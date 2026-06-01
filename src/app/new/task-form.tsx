@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button"
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -12,32 +11,9 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import prisma from "@/lib/prisma"
-import { redirect } from "next/navigation";
+import { createTask } from "./task.actions";
 
 export function TaskForm() {
-
-  async function createTask(formData: FormData) {
-    'use server'
-
-    const name = formData.get('name') as string
-    const description = formData.get('description') as string
-    const priority = formData.get('priority') as string
-
-    console.log(formData)
-
-    if( !name || !description || !priority ) return 
-
-    const newTask = await prisma.task.create({
-      data: {
-        name: name,
-        description: description,
-        priority: priority,
-      }
-    })
-    console.log(newTask)
-    redirect('/')
-  }
 
   return (
     <form action={createTask} className="w-full max-w-sm">
