@@ -2,7 +2,7 @@ import { TaskForm } from './task-form'
 
 function NewPage() {
   return (
-    <div className='flex items-center justify-center h-screen'>
+    <div className='flex items-center justify-center'>
       <TaskForm />
     </div>
   )

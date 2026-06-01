@@ -9,7 +9,7 @@ async function TaskPageEdit({params} : {
   const task = await findTaskById(id)
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center">
       <TaskForm task={task}/>
     </div>
   )
